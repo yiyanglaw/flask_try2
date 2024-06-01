@@ -7,10 +7,10 @@ app = Flask(__name__)
 data = pd.read_csv('p2.csv')
 phishing_urls = data['URL'].tolist()
 
-@app.route('/check_url', methods=['POST'])
+@app.route('/check_url', methods=['GET'])
 def check_url():
-    # Get the user input URL from the request
-    url = request.form['url']
+    # Get the user input URL from the query parameter
+    url = request.args.get('url')
 
     # Check if the URL is similar to any of the phishing URLs
     for phishing_url in phishing_urls:
